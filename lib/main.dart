@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
               selectedItemColor: kColorPrimary,
               selectedIconTheme: const IconThemeData(color: kColorPrimary),
               unselectedIconTheme: IconThemeData(color: Colors.grey.shade400))),
-      home: const MyHomePage(title: 'Home Page'),
+      home: const MyHomePage(title: 'New Home Page'),
     );
   }
 }
