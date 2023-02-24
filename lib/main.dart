@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Hello World changed',
+              'Hello World changed2',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
