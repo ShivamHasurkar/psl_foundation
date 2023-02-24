@@ -21,15 +21,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: kPrimarySwatchColor,
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               selectedItemColor: kColorPrimary,
-              selectedIconTheme: const IconThemeData(
-                  color: kColorPrimary
-              ),
-              unselectedIconTheme: IconThemeData(
-                  color: Colors.grey.shade400
-              )
-          )
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+              selectedIconTheme: const IconThemeData(color: kColorPrimary),
+              unselectedIconTheme: IconThemeData(color: Colors.grey.shade400))),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
@@ -44,25 +38,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0 ;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (value) =>{
-          setState(()=> _currentIndex = value)
-        },
+        onTap: (value) => {setState(() => _currentIndex = value)},
         currentIndex: _currentIndex,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.house), label: "Home"),
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.thumbtack), label: "Past Activities"),
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.chartLine), label: "Analytics"),
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.user), label: "Profile"),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.house), label: "Home"),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.thumbtack),
+              label: "Past Activities"),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.chartLine), label: "Analytics"),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.user), label: "Profile"),
         ],
       ),
       body: Center(
