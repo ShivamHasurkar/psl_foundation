@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:psl_foundation/views/analytics.dart';
 import 'package:psl_foundation/views/home_page.dart';
 import 'package:psl_foundation/views/past_activities.dart';
-import 'package:psl_foundation/views/profile.dart';
+import 'profile.dart';
 
 class PFBottomNavigationBar extends StatefulWidget {
   const PFBottomNavigationBar({super.key});

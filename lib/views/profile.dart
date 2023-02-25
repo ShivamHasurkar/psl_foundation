@@ -3,23 +3,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:psl_foundation/constant.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:psl_foundation/constant.dart';
+import 'package:psl_foundation/views/login_screen.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share_extend/share_extend.dart';
+import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  ProfilePageState createState() => ProfilePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class ProfilePageState extends State<ProfilePage> {
-  // final _picker = ImagePicker();
+class _ProfilePageState extends State<ProfilePage> {
+// final _picker = ImagePicker();
+  late final box;
 
   @override
   void initState() {
     super.initState();
+    box = GetStorage();
+  }
+
+  logout() {
+    box.erase();
   }
 
   @override
@@ -44,7 +55,7 @@ class ProfilePageState extends State<ProfilePage> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    "EMPLOYEE ID",
+                    "Employee ID: ${kEmpID}",
                     style: Theme.of(context)
                         .textTheme
                         .headline6
@@ -66,7 +77,7 @@ class ProfilePageState extends State<ProfilePage> {
                         .headline6
                         ?.copyWith(fontWeight: FontWeight.w300, fontSize: 16),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -76,7 +87,7 @@ class ProfilePageState extends State<ProfilePage> {
                         label: const Text("Webiste"),
                         icon: const Icon(FontAwesomeIcons.globe),
                       ),
-                      const SizedBox(width: 20.0),
+                      const SizedBox(width: 10.0),
                       FloatingActionButton.extended(
                         onPressed: () {},
                         backgroundColor: kColorPrimary,
@@ -85,9 +96,9 @@ class ProfilePageState extends State<ProfilePage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   const _ProfileInfoRow(),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   // if(condtion) //lives saved is more than 10 award the persistent foundation
                   FloatingActionButton.extended(
                     onPressed: () async {
@@ -103,6 +114,16 @@ class ProfilePageState extends State<ProfilePage> {
                     backgroundColor: kColorPrimary,
                     label: const Text("Download Star Performer Certificate"),
                     icon: const Icon(FontAwesomeIcons.award),
+                  ),
+                  const SizedBox(height: 20),
+                  FloatingActionButton.extended(
+                    onPressed: () {
+                      logout();
+                      Get.off(() => LoginScreen());
+                    },
+                    backgroundColor: Colors.red,
+                    label: const Text("Logout"),
+                    icon: const Icon(FontAwesomeIcons.rightFromBracket),
                   ),
                 ],
               ),

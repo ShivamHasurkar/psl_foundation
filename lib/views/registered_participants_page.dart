@@ -19,8 +19,13 @@ class RegisteredPage extends StatelessWidget {
               return Container(
                 margin: EdgeInsets.only(bottom: 5.0),
                 child: Card(
-                  shape: RoundedRectangleBorder(),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                   child: ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
                     tileColor: Colors.white,
                     leading: CircleAvatar(
                       backgroundImage:

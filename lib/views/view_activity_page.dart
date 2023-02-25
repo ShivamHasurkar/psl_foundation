@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:psl_foundation/constant.dart';
+import 'package:psl_foundation/services/HomeScreenFunctions.dart';
+import 'package:psl_foundation/views/registered_participants_page.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
 
 class ViewActivityPage extends StatefulWidget {
-  const ViewActivityPage({Key? key}) : super(key: key);
+  var activityData;
+  ViewActivityPage({required this.activityData});
 
   @override
   _ViewActivityPageState createState() => _ViewActivityPageState();
@@ -11,13 +17,18 @@ class ViewActivityPage extends StatefulWidget {
 
 class _ViewActivityPageState extends State<ViewActivityPage> {
   bool? isHeartIconTapped = false;
-  bool activityType = false; //assign directly from database
+  // bool activityType = widget.activityData[""]; //assign directly from database
 
   String isDonationActivity() {
-    if (activityType) {
-      return "Donate";
+    if (appMode == "Admin") {
+      return "See Registered Participants";
     } else {
-      return "Volunteer";
+      if (widget.activityData["Activity_Type"] == "Donation Drive") {
+        return "Donate";
+      } else {
+        print(widget.activityData["Task"][0]);
+        return "Volunteer";
+      }
     }
   }
 
@@ -30,7 +41,10 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: const PFAppBar(title: "Activity"),
+      appBar: PFAppBar(
+        title: "Activity",
+        icon: Icons.local_activity,
+      ),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Stack(
@@ -42,7 +56,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                   height: 10,
                 ),
                 Row(
-                  children: const <Widget>[
+                  children: <Widget>[
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.only(left: 28),
@@ -50,7 +64,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                           tag: "Activity Title",
                           child: Material(
                             color: Colors.transparent,
-                            child: Text("Activity Title",
+                            child: Text(widget.activityData["Title"],
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 34,
@@ -67,7 +81,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 28),
                   child: Text(
-                    "Community Development",
+                    widget.activityData["Activity_Type"],
                     style: TextStyle(
                         color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.7),
                         fontWeight: FontWeight.w400,
@@ -127,13 +141,19 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                         ),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
-                          onTap: () {
+                          onTap: () async {
                             onHeartIconTapped();
+                            HomeScreenFunctions temp =
+                                new HomeScreenFunctions();
+                            await temp.addLike(
+                                empId: kEmpID,
+                                activityId: widget.activityData["Activity_Id"]);
                           },
                           child: Icon(
-                            Icons.thumb_up_sharp,
-                            color:
-                                isHeartIconTapped! ? Colors.red : Colors.grey,
+                            FontAwesomeIcons.handsClapping,
+                            color: isHeartIconTapped!
+                                ? kColorPrimary
+                                : Colors.grey,
                           ),
                         ),
                       ),
@@ -154,7 +174,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                             // onHeartIconTapped();
                           },
                           child: Icon(
-                            Icons.chat,
+                            FontAwesomeIcons.whatsapp,
                             color: Colors.green,
                           ),
                         ),
@@ -162,112 +182,139 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                       SizedBox(
                         width: 20,
                       ),
-                      Divider(
-                        color: Colors.yellow,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
                       Container(
                         height: 42,
-                        width: 105,
+                        width: Get.width * 0.4,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.black, width: 1),
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white.withOpacity(0.1),
                         ),
                         child: Row(
-                          children: const <Widget>[
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
                             Padding(
                               padding: EdgeInsets.only(left: 10),
-                              child: Text("112",
+                              child: Text(
+                                  widget.activityData["Lives_Touched"]
+                                      .toString(),
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20)),
                             ),
-                            Spacer(
-                              flex: 2,
+                            SizedBox(
+                              width: Get.width * 0.03,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(right: 5),
-                              child: Text("Lives\nTouched",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w100,
-                                      fontSize: 10)),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        height: 42,
-                        width: 105,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 1),
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white.withOpacity(0.1),
-                        ),
-                        child: Row(
-                          children: const <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text("18",
+                              padding: EdgeInsets.only(right: 10),
+                              child: Text("Lives Touched",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20)),
-                            ),
-                            Spacer(
-                              flex: 2,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(right: 5),
-                              child: Text("Registered\nParticipants",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w100,
-                                      fontSize: 10)),
+                                      fontSize: 12)),
                             ),
                           ],
                         ),
                       ),
+                      // SizedBox(
+                      //   width: 20,
+                      // ),
+                      // Container(
+                      //   height: 42,
+                      //   width: 105,
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.black, width: 1),
+                      //     borderRadius: BorderRadius.circular(10),
+                      //     color: Colors.white.withOpacity(0.1),
+                      //   ),
+                      //   child: Row(
+                      //     children: const <Widget>[
+                      //       Padding(
+                      //         padding: EdgeInsets.only(left: 10),
+                      //         child: Text("18",
+                      //             style: TextStyle(
+                      //                 color: Colors.black,
+                      //                 fontWeight: FontWeight.bold,
+                      //                 fontSize: 20)),
+                      //       ),
+                      //       Spacer(
+                      //         flex: 2,
+                      //       ),
+                      //       Padding(
+                      //         padding: EdgeInsets.only(right: 5),
+                      //         child: Text("Registered\nParticipants",
+                      //             style: TextStyle(
+                      //                 color: Colors.black,
+                      //                 fontWeight: FontWeight.w100,
+                      //                 fontSize: 10)),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
                 SizedBox(height: 20),
-                Padding(
-                  padding: EdgeInsets.only(left: 28, right: 28),
-                  child: Text(
-                    "Date: 15th March 2023",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.7),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16),
-                  ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(50.0)),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 4),
+                        child: Row(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.locationDot,
+                              size: 14,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              widget.activityData["Location"],
+                              style: TextStyle(fontSize: 12),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(50.0)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 4),
+                      child: Row(
+                        children: [
+                          const FaIcon(
+                            FontAwesomeIcons.calendar,
+                            size: 14,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            widget.activityData["Date"].toString(),
+                            style: TextStyle(fontSize: 12),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.only(left: 28, right: 28),
                   child: Text(
-                    "Location: Hinjewadi, Pune",
+                    "Activity Owner: ${widget.activityData["Activity_Owner"]}",
                     style: TextStyle(
                         color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.7),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: EdgeInsets.only(left: 28, right: 28),
-                  child: Text(
-                    "Activity Owner: Sonal Patil",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.7),
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.bold,
                         fontSize: 16),
                   ),
                 ),
@@ -275,7 +322,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 28, right: 28, bottom: 80),
                   child: Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    widget.activityData["Description"],
                     style: TextStyle(
                         color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.7),
                         fontWeight: FontWeight.w400,
@@ -306,10 +353,21 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(16),
-                      onTap: () {},
+                      onTap: () {
+                        if (appMode == "Admin") {
+                          Get.to(() => RegisteredPage());
+                        } else {
+                          if (widget.activityData["Activity_Type"] ==
+                              "Donation Drive") {
+                            // Get.to(() => RegisteredPage()); Add Donate Button
+                          } else {
+                            // Get.to(() => RegisteredPage()); Add Volunteering Page
+                          }
+                        }
+                      },
                       child: Ink(
                         decoration: BoxDecoration(
-                          color: Color(0xff4A80F0),
+                          color: kColorPrimary,
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Container(

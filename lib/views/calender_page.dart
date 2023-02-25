@@ -9,7 +9,24 @@ class CalenderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Calender")),
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: FaIcon(
+                FontAwesomeIcons.calendar,
+                size: 16,
+              ),
+            ),
+            Text(
+              "Calender",
+              style: const TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       body: Container(
         margin: EdgeInsets.all(kDefaultSpace),
         child: ListView.builder(
@@ -18,11 +35,17 @@ class CalenderPage extends StatelessWidget {
               return Container(
                 // margin: EdgeInsets.only(bottom: 5.0),
                 // height: 80,
+
                 child: Card(
-                  shape: RoundedRectangleBorder(),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
                         tileColor: Colors.white,
                         leading: AspectRatio(
                           aspectRatio: 1,
