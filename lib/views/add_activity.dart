@@ -9,8 +9,10 @@ import 'package:psl_foundation/Data/activity_model.dart';
 import 'package:psl_foundation/Data/task.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
 import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
+import 'package:psl_foundation/services/ActivityFunctions.dart';
 
 import '../constant.dart';
+import '';
 
 class AddActivity extends StatefulWidget {
   const AddActivity({Key? key}) : super(key: key);
@@ -24,6 +26,14 @@ class _AddActivityState extends State<AddActivity> {
       GlobalKey<FormBuilderState>();
   final GlobalKey<FormBuilderState> _taskKey = GlobalKey<FormBuilderState>();
 
+
+  void addActivityToFirebase(ActivityModel activity) async{
+    print("In Activity Page");
+    print(activity);
+    ActivityFunctions activityService = new ActivityFunctions();
+    var erdata = await activityService.addActivity(activity: activity);
+    print(erdata);
+  }
 
   List<Task> localTask = [];
   @override
@@ -79,6 +89,21 @@ class _AddActivityState extends State<AddActivity> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
                           labelText: "Activity Type",
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1.5, color: Colors.black26))),
+                      validator: FormBuilderValidators.compose(
+                          [FormBuilderValidators.required()]),
+                    ),
+                  ),
+                  Container(
+                    margin:
+                    const EdgeInsets.symmetric(vertical: kVerticalSpace),
+                    child: FormBuilderTextField(
+                      name: "Activity_Owner",
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: const InputDecoration(
+                          labelText: "Activity Owner",
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   width: 1.5, color: Colors.black26))),
@@ -304,11 +329,8 @@ class _AddActivityState extends State<AddActivity> {
                         print(singleTask);
                         localTask.add(singleTask);
                         print(localTask.length);
-                        localTask.map((e) {
-                          print("HERE");
-                          print(e);
-                        });
                       }),
+
                   SizedBox(
                     height: 10,
                   ),
@@ -316,16 +338,20 @@ class _AddActivityState extends State<AddActivity> {
                     title: "Submit",
                     onPressed: () {
                       bool? isValid = _activityKey.currentState?.isValid;
-
-                      if (isValid!) {
+                      bool? isTaskValid = _taskKey.currentState?.isValid;
+                      if (isValid! ) {
+                        print("here");
                         _activityKey.currentState?.save();
-                        Map<String, dynamic> o =
+                        final Map<String, dynamic> o =
                             _activityKey.currentState!.value;
+                        // o["Task"] = localTask;
 
                         ActivityModel activityData = ActivityModel.fromJson(o);
                         activityData.addToList(localTask);
 
-                        print(activityData.toJson());
+                        // print(activityData.toJson());
+
+                        addActivityToFirebase(activityData);
 
 
                         // activityData

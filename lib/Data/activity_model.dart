@@ -17,21 +17,18 @@ class ActivityModel {
 
   ActivityModel(
       {String? activityId,
-        String? title,
-        String? description,
-        String? activityType,
-        String? date,
-        String? location,
-        String? whatsappChatLink,
-        String? activityOwner,
-        String? notificationDuration,
-        String? livesTouched,
-
-        List<Task>? task,
-        List? registeredEmployees,
-        List? like
-
-      }) {
+      String? title,
+      String? description,
+      String? activityType,
+      String? date,
+      String? location,
+      String? whatsappChatLink,
+      String? activityOwner,
+      String? notificationDuration,
+      String? livesTouched,
+      List<Task>? task,
+      List? registeredEmployees,
+      List? like}) {
     if (activityId != null) {
       this._activityId = activityId;
     }
@@ -94,8 +91,7 @@ class ActivityModel {
   set notificationDuration(String? notificationDuration) =>
       _notificationDuration = notificationDuration;
   String? get livesTouched => _livesTouched;
-  set livesTouched(String? livesTouched) =>
-      livesTouched = livesTouched;
+  set livesTouched(String? livesTouched) => livesTouched = livesTouched;
   List<Task>? get task => _task;
   set task(List<Task>? task) => _task = task;
   List? get registeredEmployees => _registeredEmployees;
@@ -145,6 +141,8 @@ class ActivityModel {
   }
 
   void addToList(List<Task> value) {
-    task = value;
+    if(value[0].title != Null) {
+      task = value;
+    }
   }
 }

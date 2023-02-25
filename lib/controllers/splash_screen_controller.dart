@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:psl_foundation/views/bottom_navigation_bar.dart';
 
+import '../views/add_activity.dart';
+
 
 class SplashScreenController extends GetxController {
 

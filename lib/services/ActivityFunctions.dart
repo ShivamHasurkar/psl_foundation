@@ -1,15 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:psl_foundation/services/EmployeeFunctions.dart';
 
+import '../Data/activity_model.dart';
+
 class ActivityFunctions {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   EmployeeFunctions employeeFunctions = new EmployeeFunctions();
 
-  addActivity({required var activity}) async {
+  addActivity({required ActivityModel activity}) async {
+    print("In Service Activity Page");
+    print(activity.toJson());
+    print(activity.activityId);
     final collectionReference = firestore.collection('activities');
     var documentReference =
-        await collectionReference.doc(activity["Activity_Id"].toString());
-    documentReference.set(activity);
+        await collectionReference.doc(activity.activityId);
+    documentReference.set(activity.toJson());
+
   }
 
   fetchAllActivities() async {
