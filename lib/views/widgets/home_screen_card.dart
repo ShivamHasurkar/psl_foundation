@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:psl_foundation/constant.dart';
 import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
 
 class PFHomeScreenCard extends StatelessWidget {
-  const PFHomeScreenCard({Key? key}) : super(key: key);
+  const PFHomeScreenCard({Key? key, required this.title, required this.date, required this.desc, required this.likeCount, required this.location, required this.subHeading}) : super(key: key);
+
+  final String title;
+  final String subHeading;
+  final String desc;
+  final String location;
+  final String date;
+  final int likeCount;
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +31,33 @@ class PFHomeScreenCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    child: Container(),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Heading',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold
+                    child: Text(
+                      title.substring(0, 1),
+                      style: const TextStyle(
+                        color: Colors.white
                       ),
                     ),
-                    Text(
-                      'Sub heading',
-                      style: TextStyle(
-                          fontSize: 10,
-                        color: Color(0xFF79757F)
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    )
-                  ],
+                      Text(
+                        subHeading,
+                        style: TextStyle(
+                            fontSize: 10,
+                          color: Color(0xFF79757F)
+                        ),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
@@ -61,7 +77,7 @@ class PFHomeScreenCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+                      desc,
                       maxLines: 1,
                       style: TextStyle(
                           overflow: TextOverflow.ellipsis,
@@ -93,7 +109,7 @@ class PFHomeScreenCard extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                          'Location',
+                          location,
                           style: TextStyle(
                             fontSize: 12
                           ),
@@ -118,7 +134,7 @@ class PFHomeScreenCard extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                          'Date',
+                          date,
                         style: TextStyle(
                           fontSize: 12
                         ),
@@ -136,9 +152,9 @@ class PFHomeScreenCard extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.solidHeart,
-                    color: Colors.red,
+                  icon: FaIcon(
+                    FontAwesomeIcons.handsClapping,
+                    color: Colors.grey.shade400,
                   ),
                 ),
                 const SizedBox(
@@ -150,7 +166,7 @@ class PFHomeScreenCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    '1.2K',
+                    likeCount.toString() + "k",
                     style: TextStyle(
                         fontWeight: FontWeight.bold
                     ),
