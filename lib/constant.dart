@@ -9,6 +9,9 @@ const kDefaultSpace = 20.0;
 const kHorizontalSpace = 20.0;
 const kVerticalSpace = 10.0;
 
+// For temporary purpose as we don't have login feature yet
+const appMode = "USER";
+
 const MaterialColor kPrimarySwatchColor = MaterialColor(
     0xFF3BC279,
     <int, Color>{
