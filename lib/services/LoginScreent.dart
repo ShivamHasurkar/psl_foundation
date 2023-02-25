@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class LoginScreen {
+class LoginScreenService {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 //returns either of the three messages -  LoggedIn , WrongPassword, UserNotFound
@@ -17,7 +17,8 @@ class LoginScreen {
       empPassword = data["Password"];
       if (empPassword == password) {
         // print("LoggedIn");
-        return "LoggedIn";
+        String role = data["Role"];
+        return role;
       } else {
         // print("WrongPassword");
         return "WrongPassword";

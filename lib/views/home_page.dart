@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:psl_foundation/services/HomeScreenFunctions.dart';
+import 'package:psl_foundation/views/add_activity.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
 import 'package:get/get.dart';
 import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
@@ -36,8 +37,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const PFAppBar(title: "Home", icon: FontAwesomeIcons.house),
-      floatingActionButton: appMode != "USER" ? FloatingActionButton(
-        onPressed: () {},
+      floatingActionButton: appMode != "User" ? FloatingActionButton(
+        onPressed: () {
+          Get.to(() => AddActivity());
+        },
         child: const Text(
           "+",
           style: TextStyle(
@@ -71,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               );
             } else if (snapshot.connectionState == ConnectionState.active || snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasError) {
-                return const Text('Error');
+                return const Center(child: Text('Error'));
               } else if (snapshot.hasData) {
                 List activity_data = snapshot.data;
                 return ListView.builder(
@@ -80,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                     return PFHomeScreenCard(
                       title: activity_data[index]['Title'],
                       subHeading: activity_data[index]['Activity_Type'],
+                      imgUrl: activity_data[index]['ImageURL'],
                       date: activity_data[index]['Date'],
                       desc: activity_data[index]['Description'],
                       likeCount: activity_data[index]['Like'].length,
@@ -88,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 );
               } else {
-                return const Text('No data');
+                return const Center(child: Text('No data'));
               }
             } else {
               return Text('State: ${snapshot.connectionState}');
