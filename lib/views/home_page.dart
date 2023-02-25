@@ -9,6 +9,7 @@ import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
 import 'package:psl_foundation/views/widgets/home_screen_card.dart';
 
 import '../constant.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -17,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   List list = [];
 
   Future getData() async {
@@ -37,18 +37,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const PFAppBar(title: "Home", icon: FontAwesomeIcons.house),
-      floatingActionButton: appMode != "User" ? FloatingActionButton(
-        onPressed: () {
-          Get.to(() => AddActivity());
-        },
-        child: const Text(
-          "+",
-          style: TextStyle(
-            fontSize: 30,
-            color: Colors.white
-          ),
-        ),
-      ) : Container(),
+      floatingActionButton: appMode != "User"
+          ? FloatingActionButton(
+              onPressed: () {
+                Get.to(() => AddActivity());
+              },
+              child: const Text(
+                "+",
+                style: TextStyle(fontSize: 30, color: Colors.white),
+              ),
+            )
+          : Container(),
       // body: ListView.builder(
       //   itemCount: list.length,
       //   physics: BouncingScrollPhysics(),
@@ -67,20 +66,21 @@ class _HomePageState extends State<HomePage> {
 
       body: FutureBuilder(
         future: getData(),
-          builder: (context, AsyncSnapshot snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.connectionState == ConnectionState.active || snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasError) {
-                return const Center(child: Text('Error'));
-              } else if (snapshot.hasData) {
-                List activity_data = snapshot.data;
-                return ListView.builder(
-                  itemCount: activity_data.length,
-                  itemBuilder: (context, index) {
-                    return PFHomeScreenCard(
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.connectionState == ConnectionState.active ||
+              snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              return const Center(child: Text('Error'));
+            } else if (snapshot.hasData) {
+              List activity_data = snapshot.data;
+              return ListView.builder(
+                itemCount: activity_data.length,
+                itemBuilder: (context, index) {
+                  return PFHomeScreenCard(
                       title: activity_data[index]['Title'],
                       subHeading: activity_data[index]['Activity_Type'],
                       imgUrl: activity_data[index]['ImageURL'],
@@ -88,18 +88,17 @@ class _HomePageState extends State<HomePage> {
                       desc: activity_data[index]['Description'],
                       likeCount: activity_data[index]['Like'].length,
                       location: activity_data[index]['Location'],
-                    );
-                  },
-                );
-              } else {
-                return const Center(child: Text('No data'));
-              }
+                      activityData: activity_data[index]);
+                },
+              );
             } else {
-              return Text('State: ${snapshot.connectionState}');
+              return const Center(child: Text('No data'));
             }
-          },
+          } else {
+            return Text('State: ${snapshot.connectionState}');
+          }
+        },
       ),
-
 
       // body: Obx(() {
       //   return ListView.builder(

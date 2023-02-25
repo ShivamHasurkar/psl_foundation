@@ -9,11 +9,11 @@ class RegisteredPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PFAppBar(title: "Registered Participants",icon: FontAwesomeIcons.calendar),
+      appBar: const PFAppBar(
+          title: "Registered Participants", icon: FontAwesomeIcons.calendar),
       body: Container(
         margin: EdgeInsets.all(kDefaultSpace),
         child: ListView.builder(
-            
             itemCount: 5,
             itemBuilder: (BuildContext context, int index) {
               return Container(
@@ -22,35 +22,33 @@ class RegisteredPage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
-                  child:ListTile(
+                  child: ListTile(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
                     tileColor: Colors.white,
                     leading: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/avtar_image.jpg'),
+                      backgroundImage:
+                          AssetImage('assets/images/avtar_image.jpg'),
                     ),
-                    title:Text('Arti Tiwari',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-  ),
+                    title: Text(
+                      'Arti Tiwari',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Row(
                       children: [
-                        Text('BU: Google',
-                          style: TextStyle(
-                              color: Colors.black
-                          ),
+                        Text(
+                          'BU: Google',
+                          style: TextStyle(color: Colors.black),
                         ),
-                        SizedBox(width:30),
-                        Text('Grade\t: 3.2',
-                          style: TextStyle(
-                              color: Colors.black
-                          ),
+                        SizedBox(width: 30),
+                        Text(
+                          'Grade\t: 3.2',
+                          style: TextStyle(color: Colors.black),
                         ),
                       ],
                     ),
-                    ),
+                  ),
 
                   //ListTile
                 ),
