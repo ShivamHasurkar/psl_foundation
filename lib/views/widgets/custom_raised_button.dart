@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import '../../constant.dart';
 
 class PFRaisedButton extends StatelessWidget {
-  const PFRaisedButton({Key? key, required this.title}) : super(key: key);
+  const PFRaisedButton({Key? key, required this.title, required this.onPressed}) : super(key: key);
 
   final String title;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class PFRaisedButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
-        onTap: () {},
+        onTap: onPressed,
         child: Container(
           height: 50,
           width: Get.width,
