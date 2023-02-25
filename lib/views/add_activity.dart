@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -23,7 +24,7 @@ class _AddActivityState extends State<AddActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PFAppBar(title: "Add Activity"),
+      appBar: const PFAppBar(title: "Add Activity", icon: FontAwesomeIcons.plus),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
