@@ -9,9 +9,8 @@ class CalenderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      appBar: const PFAppBar(title: "Calender",icon: FontAwesomeIcons.calendar),
-      body:Container(
+      appBar: AppBar(title: Text("Calender")),
+      body: Container(
         margin: EdgeInsets.all(kDefaultSpace),
         child: ListView.builder(
             itemCount: 5,
@@ -21,53 +20,46 @@ class CalenderPage extends StatelessWidget {
                 // height: 80,
                 child: Card(
                   shape: RoundedRectangleBorder(),
-                  child:Padding(
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: ListTile(
-                      tileColor: Colors.white,
-                      leading:AspectRatio(
+                        tileColor: Colors.white,
+                        leading: AspectRatio(
                           aspectRatio: 1,
-                          child:Card(
+                          child: Card(
                             color: Color(0xFFEDE98D),
-                           child:Column(
-                             children: [
-                               Text(
-                                 '24',
-                                 style: TextStyle(
-                                     fontWeight: FontWeight.bold,
-                                   fontSize: 20,
-                                 ),
-                               ),
-                               Text(
-                                   'Jan'
-                               )
-                             ],
-                           ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '24',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                Text('Jan')
+                              ],
+                            ),
                           ),
-                      ),
-                      title:Text('Title of the Activity',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold
                         ),
-                    ),
-                      trailing: const Icon(Icons.arrow_forward),
-                                onTap: () {
-                                  //Push to specific View Activity Page.
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => const CalenderPage()),
-                                  // );
-                                }
-
-                    ),
+                        title: Text(
+                          'Title of the Activity',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward),
+                        onTap: () {
+                          //Push to specific View Activity Page.
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const CalenderPage()),
+                          // );
+                        }),
                   ),
-
                 ),
               );
             }),
       ),
-
     );
   }
 }

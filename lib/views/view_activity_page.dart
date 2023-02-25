@@ -30,7 +30,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PFAppBar(title: "Activity"),
+      // appBar: const PFAppBar(title: "Activity"),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Stack(
