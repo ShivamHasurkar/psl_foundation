@@ -155,16 +155,10 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                             // onHeartIconTapped();
                           },
                           child: Icon(
-                            Icons.chat,
+                            FontAwesomeIcons.whatsapp,
                             color: Colors.green,
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Divider(
-                        color: Colors.yellow,
                       ),
                       SizedBox(
                         width: 20,
@@ -310,7 +304,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                       onTap: () {},
                       child: Ink(
                         decoration: BoxDecoration(
-                          color: Color(0xff4A80F0),
+                          color: kColorPrimary,
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Container(

@@ -1,11 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:psl_foundation/constant.dart';
+import 'package:psl_foundation/views/view_activity_page.dart';
 import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
 
 class PFHomeScreenCard extends StatelessWidget {
-  const PFHomeScreenCard({Key? key, required this.title, required this.date, required this.desc, required this.likeCount, required this.location, required this.subHeading}) : super(key: key);
+  const PFHomeScreenCard({Key? key, required this.title, required this.date, required this.desc, required this.likeCount, required this.location, required this.subHeading, required this.imgUrl}) : super(key: key);
 
   final String title;
   final String subHeading;
@@ -13,6 +15,7 @@ class PFHomeScreenCard extends StatelessWidget {
   final String location;
   final String date;
   final int likeCount;
+  final List imgUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +66,21 @@ class PFHomeScreenCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
+              // child: Container(
+              //   height: 150,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //     color: Colors.grey.shade100
+              //   ),
+              // ),
+              child: CachedNetworkImage(
+                imageUrl: imgUrl[0],
                 height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.grey.shade100
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                progressIndicatorBuilder: (context, url, progress) => Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                  ),
                 ),
               ),
             ),
@@ -179,7 +192,9 @@ class PFHomeScreenCard extends StatelessWidget {
                     width: 100,
                     height: 35,
                     title: "VIEW MORE",
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => ViewActivityPage());
+                    },
                   ),
                 )
               ],
