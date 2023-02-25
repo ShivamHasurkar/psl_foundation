@@ -2,7 +2,7 @@
     package="com.semicolons.psl_foundation">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="psl_foundation"
+        android:label="Sahayak"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
