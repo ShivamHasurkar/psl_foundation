@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 const scafBgColor = Color(0xFFF2F3F8);
 const bgShadow = Color(0xFFf4f3f3);
 const kColorPrimary = Color(0xFF3BC279);
-const kDefaultSpace = 20;
-const kHorizontalSpace = 20;
-const kVerticalSpace = 10;
+const kDefaultSpace = 20.0;
+const kHorizontalSpace = 20.0;
+const kVerticalSpace = 10.0;
 
 const MaterialColor kPrimarySwatchColor = MaterialColor(
     0xFF3BC279,
