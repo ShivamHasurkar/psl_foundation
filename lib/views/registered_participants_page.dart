@@ -9,7 +9,6 @@ class RegisteredPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: const PFAppBar(title: "Registered Participants",icon: FontAwesomeIcons.calendar),
       body: Container(
         margin: EdgeInsets.all(kDefaultSpace),
@@ -20,8 +19,13 @@ class RegisteredPage extends StatelessWidget {
               return Container(
                 margin: EdgeInsets.only(bottom: 5.0),
                 child: Card(
-                  shape: RoundedRectangleBorder(),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                   child:ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
                     tileColor: Colors.white,
                     leading: CircleAvatar(
                       backgroundImage: AssetImage('assets/images/avtar_image.jpg'),
