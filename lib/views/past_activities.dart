@@ -51,49 +51,52 @@ class _PastActivitiesState extends State<PastActivities> {
                 itemCount: activity_data.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: EdgeInsets.only(bottom: 5.0),
+                    margin: EdgeInsets.symmetric(horizontal: kVerticalSpace, vertical: 5),
                     child: InkWell(
                       onTap: () {},
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
-                          child: ListTile(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          tileColor: Colors.white,
+                          leading: const CircleAvatar(
+                            backgroundColor: kColorPrimary,
+                            child: FaIcon(
+                              FontAwesomeIcons.check,
+                              color: Colors.white,
                             ),
-                            tileColor: Colors.white,
-                            leading: const CircleAvatar(
-                              backgroundColor: kColorPrimary,
-                              child: FaIcon(
-                                FontAwesomeIcons.check,
-                                color: Colors.white,
-                              ),
-                            ),
-                            title: Text(
-                              activity_data[index]['Title'],
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Activity Owner  :" + activity_data[index]['Activity_Owner'],
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                Text(
-                                  "Activity Date  :" + activity_data[index]['Date'],
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                Text(
-                                  "Lives Touched  :" + activity_data[index]['Lives_Touched'].toString(),
-                                  style: TextStyle(color: Colors.black),
-                                ),
+                          ),
+                          title: Text(
+                            activity_data[index]['Title'],
+                            style: TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 14,
 
-                              ],
-                            ),
+                                ),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Activity Owner  :" + activity_data[index]['Activity_Owner'],
+                                style: TextStyle(fontSize: 12,
+                                    color: Color(0xFF79757F)),
+                              ),
+                              Text(
+                                "Activity Date  :" + activity_data[index]['Date'],
+                                style: TextStyle(fontSize: 12,
+                                    color: Color(0xFF79757F)),
+                              ),
+                              Text(
+                                "Lives Touched  :" + activity_data[index]['Lives_Touched'].toString(),
+                                style: TextStyle(fontSize: 12,
+                                    color: Color(0xFF79757F)),
+                              ),
+
+                            ],
                           ),
                         ),
 
