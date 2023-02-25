@@ -11,9 +11,7 @@ class ActivityModel {
   String? _activityOwner;
   String? _notificationDuration;
   String? _livesTouched;
-  List<Task>? _task;
-  List? _registeredEmployees = [];
-  List? _like = [];
+  // List<Task>? _task;
 
   ActivityModel(
       {String? activityId,
@@ -25,12 +23,8 @@ class ActivityModel {
         String? whatsappChatLink,
         String? activityOwner,
         String? notificationDuration,
-        String? livesTouched,
-
-        List<Task>? task,
-        List? registeredEmployees,
-        List? like
-
+        String? livesTouched
+        // List<Task>? task
       }) {
     if (activityId != null) {
       this._activityId = activityId;
@@ -62,15 +56,9 @@ class ActivityModel {
     if (livesTouched != null) {
       this._livesTouched = livesTouched;
     }
-    if (task != null) {
-      this._task = task;
-    }
-    if (registeredEmployees != null) {
-      this._registeredEmployees = registeredEmployees;
-    }
-    if (like != null) {
-      this._like = like;
-    }
+    // if (task != null) {
+    //   this._task = task;
+    // }
   }
 
   String? get activityId => _activityId;
@@ -96,13 +84,9 @@ class ActivityModel {
   String? get livesTouched => _livesTouched;
   set livesTouched(String? livesTouched) =>
       livesTouched = livesTouched;
-  List<Task>? get task => _task;
-  set task(List<Task>? task) => _task = task;
-  List? get registeredEmployees => _registeredEmployees;
-  set registeredEmployees(List? registeredEmployees) =>
-      _registeredEmployees = registeredEmployees!;
-  List? get like => _like;
-  set like(List? like) => _like = like!;
+  // List<Task>? get task => _task;
+  // set task(List<Task>? task) => _task = task;
+
   ActivityModel.fromJson(Map<String, dynamic> json) {
     _activityId = json['Activity_Id'];
     _title = json['Title'];
@@ -114,14 +98,12 @@ class ActivityModel {
     _activityOwner = json['Activity_Owner'];
     _notificationDuration = json['Notification_Duration'];
     _livesTouched = json['Lives_Touched'];
-    _registeredEmployees = json['Registered_Employees'];
-    if (json['Task'] != null) {
-      _task = <Task>[];
-      json['Task'].forEach((v) {
-        _task!.add(new Task.fromJson(v));
-      });
-      _like = json['Like'].cast<int>();
-    }
+    // if (json['Task'] != null) {
+    //   _task = <Task>[];
+    //   json['Task'].forEach((v) {
+    //     _task!.add(new Task.fromJson(v));
+    //   });
+    // }
   }
 
   Map<String, dynamic> toJson() {
@@ -136,15 +118,9 @@ class ActivityModel {
     data['Activity_Owner'] = this._activityOwner;
     data['Notification_Duration'] = this._notificationDuration;
     data['Lives_Touched'] = this._livesTouched;
-    data['Registered_Employees'] = this._registeredEmployees;
-    if (this._task != null) {
-      data['Task'] = this._task!.map((v) => v.toJson()).toList();
-    }
-    data['Like'] = this._like;
+    // if (this._task != null) {
+    //   data['Task'] = this._task!.map((v) => v.toJson()).toList();
+    // }
     return data;
-  }
-
-  void addToList(List<Task> value) {
-    task = value;
   }
 }
