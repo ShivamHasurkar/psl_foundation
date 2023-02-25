@@ -2,13 +2,13 @@ class Task {
   String? _taskId;
   String? _title;
   String? _description;
-  int? _noOfVolunteers;
+  String? _noOfVolunteers;
 
   Task(
       {String? taskId,
         String? title,
         String? description,
-        int? noOfVolunteers}) {
+        String? noOfVolunteers}) {
     if (taskId != null) {
       this._taskId = taskId;
     }
@@ -29,8 +29,8 @@ class Task {
   set title(String? title) => _title = title;
   String? get description => _description;
   set description(String? description) => _description = description;
-  int? get noOfVolunteers => _noOfVolunteers;
-  set noOfVolunteers(int? noOfVolunteers) => _noOfVolunteers = noOfVolunteers;
+  String? get noOfVolunteers => _noOfVolunteers;
+  set noOfVolunteers(String? noOfVolunteers) => _noOfVolunteers = noOfVolunteers;
 
   Task.fromJson(Map<String, dynamic> json) {
     _taskId = json['Task_id'];
