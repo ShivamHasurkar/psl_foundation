@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:psl_foundation/views/activity_specific_analytic_page.dart';
+import 'package:get/get.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
 import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
-import 'package:get/get.dart';
 
+import 'activity_specific_analytic_page.dart';
 class PastActivities extends StatelessWidget {
   const PastActivities({Key? key}) : super(key: key);
 
