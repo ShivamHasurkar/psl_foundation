@@ -44,8 +44,8 @@ class OverallAnalyticsFunctions {
     var object = await totalEmployeeCountList();
 
     return {
-      "Volunteering": (object["Volunteering"] as List).length,
-      "Donations": (object["Donations"] as List).length,
+      "Volunteering": (object["Volunteering"] as List).length.toDouble(),
+      "Donations": (object["Donations"] as List).length.toDouble(),
     };
   }
 
@@ -199,7 +199,6 @@ class OverallAnalyticsFunctions {
           (activity["Registered_Employees"] as List).length;
       total = total + totalLivesTouched;
     }
-
     return total;
   }
 }

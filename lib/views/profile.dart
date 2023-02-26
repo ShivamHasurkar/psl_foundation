@@ -96,9 +96,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5),
+                  // const SizedBox(height: 5),
                   const _ProfileInfoRow(),
-                  const SizedBox(height: 5),
+                  // const SizedBox(height: 5),
                   // if(condtion) //lives saved is more than 10 award the persistent foundation
                   FloatingActionButton.extended(
                     onPressed: () async {
@@ -225,8 +225,8 @@ class _TopPortion extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
-            width: 150,
-            height: 150,
+            width: 120,
+            height: 120,
             child: Container(
               decoration: const BoxDecoration(
                 color: Colors.black,

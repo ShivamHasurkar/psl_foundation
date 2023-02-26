@@ -24,10 +24,12 @@ class PFAppBar extends StatelessWidget with PreferredSizeWidget {
                 size: 16,
               ),
             ),
-            Text(
-              title,
-              style: const TextStyle(
-                  color: Colors.white
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                    color: Colors.white,
+                ),
               ),
             ),
           ],
