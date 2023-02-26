@@ -14,6 +14,7 @@ class PFAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0.5,
         title: Row(
           children: [
             Padding(

@@ -7,6 +7,8 @@ import 'package:psl_foundation/views/bottom_navigation_bar.dart';
 import 'package:psl_foundation/views/home_page.dart';
 import 'package:psl_foundation/views/login_screen.dart';
 
+import '../views/add_activity.dart';
+
 
 class SplashScreenController extends GetxController {
 

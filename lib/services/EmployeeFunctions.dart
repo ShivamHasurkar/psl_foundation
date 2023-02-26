@@ -24,6 +24,7 @@ class EmployeeFunctions {
       {required int employeeId,
       required var activity,
       required String taskID}) async {
+    print("In employee fun");
     var emp = await fetchEmployee(employeeId: employeeId.toString());
     int currentPoints = emp["Lives_Touched"];
     emp["Lives_Touched"] = currentPoints + activity["Lives_Touched"];
