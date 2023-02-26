@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // fillColor: kTextFildBg,
                         enabledBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(width: 2, color: kColorPrimary)),
+                                BorderSide(width: 1)),
                         //   UnderlineInputBorder( //<-- SEE HERE
                         //     borderSide: BorderSide(width: 3,
                         //     color: kColorPrimary),
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           [FormBuilderValidators.required()]),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     FormBuilderTextField(
                       name: "password",
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelText: "Password",
                         enabledBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(width: 2, color: kColorPrimary)),
+                                BorderSide(width: 1,)),
                       ),
                     ),
                     SizedBox(

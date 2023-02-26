@@ -4,14 +4,18 @@ import 'package:psl_foundation/constant.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
 import 'package:get/get.dart';
 
+import 'graph_screen.dart';
+
 class ActivitySpecificAnalyticPage extends StatelessWidget {
-  const ActivitySpecificAnalyticPage({Key? key}) : super(key: key);
+  ActivitySpecificAnalyticPage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PFAppBar(
-        title: "<Activity_Name>",
+        title: title,
         icon: FontAwesomeIcons.chartLine,
       ),
       body: SingleChildScrollView(
@@ -132,8 +136,22 @@ class ActivitySpecificAnalyticPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14.0)
                 ),
                 shadowColor: Colors.grey.shade50,
-                child: Container(
-                  height: 400,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                            'Lives touched per activity',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                      PieChartSample3(),
+                    ],
+                  ),
                 ),
               ),
             )

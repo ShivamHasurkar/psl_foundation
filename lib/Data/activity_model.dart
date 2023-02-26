@@ -11,6 +11,7 @@ class ActivityModel {
   String? _activityOwner;
   String? _notificationDuration;
   String? _livesTouched;
+  String? _imageURL;
   List<Task>? _task;
   List? _registeredEmployees = [];
   List? _like = [];
@@ -26,6 +27,7 @@ class ActivityModel {
       String? activityOwner,
       String? notificationDuration,
       String? livesTouched,
+        String? imageURL,
       List<Task>? task,
       List? registeredEmployees,
       List? like}) {
@@ -58,6 +60,9 @@ class ActivityModel {
     }
     if (livesTouched != null) {
       this._livesTouched = livesTouched;
+    }
+    if (imageURL != null) {
+      this._imageURL = imageURL;
     }
     if (task != null) {
       this._task = task;
@@ -92,6 +97,8 @@ class ActivityModel {
       _notificationDuration = notificationDuration;
   String? get livesTouched => _livesTouched;
   set livesTouched(String? livesTouched) => livesTouched = livesTouched;
+  String? get imageURL => _imageURL;
+  set imageURL(String? imageURL) => _imageURL = imageURL;
   List<Task>? get task => _task;
   set task(List<Task>? task) => _task = task;
   List? get registeredEmployees => _registeredEmployees;
@@ -110,6 +117,7 @@ class ActivityModel {
     _activityOwner = json['Activity_Owner'];
     _notificationDuration = json['Notification_Duration'];
     _livesTouched = json['Lives_Touched'];
+    _imageURL = json['ImageURL'];
     _registeredEmployees = json['Registered_Employees'];
     if (json['Task'] != null) {
       _task = <Task>[];
@@ -132,6 +140,7 @@ class ActivityModel {
     data['Activity_Owner'] = this._activityOwner;
     data['Notification_Duration'] = this._notificationDuration;
     data['Lives_Touched'] = this._livesTouched;
+    data['ImageURL'] = this._imageURL;
     data['Registered_Employees'] = this._registeredEmployees;
     if (this._task != null) {
       data['Task'] = this._task!.map((v) => v.toJson()).toList();

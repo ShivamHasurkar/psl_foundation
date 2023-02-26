@@ -57,7 +57,7 @@ class _PastActivitiesState extends State<PastActivities> {
                     margin: EdgeInsets.symmetric(horizontal: kVerticalSpace, vertical: 5),
                     child: InkWell(
                       onTap: () {
-                        Get.to(ActivitySpecificAnalyticPage());
+                        Get.to(ActivitySpecificAnalyticPage(title: activity_data[index]['Title']));
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(

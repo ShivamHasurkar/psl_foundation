@@ -26,6 +26,7 @@ class _CalenderPageState extends State<CalenderPage> {
     HomeScreenFunctions act = new HomeScreenFunctions();
     activityList = await act.fetchLiveActivities();
     print(activityList);
+    setState(() {});
   }
 
   @override

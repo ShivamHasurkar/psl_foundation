@@ -207,6 +207,33 @@ class _AddActivityState extends State<AddActivity> {
                       validator: FormBuilderValidators.compose(
                           [FormBuilderValidators.required()]),
                     ),
+
+                  ),
+                  Container(
+                    margin:
+                    const EdgeInsets.symmetric(vertical: kVerticalSpace),
+                    child: FormBuilderTextField(
+                      name: "ImageURL",
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: const InputDecoration(
+                          labelText: "Add Image URL",
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1.5, color: Colors.black26))),
+                      validator: FormBuilderValidators.compose(
+                          [FormBuilderValidators.required()]),
+                      onChanged: (val) {
+                        _activityKey.currentState?.save();
+                        _activityKey.currentState?.setInternalFieldValue(
+                            "ImageURL",
+                            _activityKey.currentState?.fields["ImageURL"]?.value
+                                .toString(),
+                            isSetState: true);
+                        _activityKey.currentState?.save();
+                      },
+                    ),
+
+
                   ),
                   PFRaisedButton(
                       title: "Add Task",

@@ -31,6 +31,7 @@ class _RegisteredPageState extends State<RegisteredPage> {
       empList.add(temp);
     }
     print(empList.length);
+    setState(() {});
   }
 
   ActivitySpecificAnalyticsFunctions asaf =
