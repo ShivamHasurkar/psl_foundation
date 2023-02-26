@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:psl_foundation/constant.dart';
 import 'package:psl_foundation/services/HomeScreenFunctions.dart';
 import 'package:psl_foundation/views/registered_participants_page.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
+import 'package:psl_foundation/views/register_for_activity.dart';
+import 'package:psl_foundation/views/widgets/custom_raised_button.dart';
+
+import '../Data/task.dart';
+import '../services/EmployeeFunctions.dart';
 
 class ViewActivityPage extends StatefulWidget {
   var activityData;
@@ -32,11 +39,19 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
     }
   }
 
+  void storeData(String employeeId, var activity, int amountDonated) async {
+    print("Here in Function");
+    EmployeeFunctions employeeFunctions = EmployeeFunctions();
+    await employeeFunctions.registerDonation(employeeId: employeeId, activity: activity, amountDonated: amountDonated);
+  }
+
   void onHeartIconTapped() {
     setState(() {
       isHeartIconTapped = !isHeartIconTapped!;
     });
   }
+
+  final GlobalKey<FormBuilderState> _donationAmountKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -353,15 +368,67 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(16),
-                      onTap: () {
+                      onTap: () async {
                         if (appMode == "Admin") {
                           Get.to(() => RegisteredPage());
                         } else {
                           if (widget.activityData["Activity_Type"] ==
                               "Donation Drive") {
-                            // Get.to(() => RegisteredPage()); Add Donate Button
+                            final task = await Get.bottomSheet(
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom:
+                                    MediaQuery.of(context).viewInsets.bottom,
+                                    top: kDefaultSpace,
+                                    right: kDefaultSpace,
+                                    left: kDefaultSpace
+                                ),
+
+                                child: SingleChildScrollView(
+                                  child: FormBuilder(
+                                    key: _donationAmountKey,
+                                    child: Column(children: [
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 5),
+                                        child: FormBuilderTextField(
+                                          name: "Donation_Amount",
+                                          autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                          decoration: const InputDecoration(
+                                              labelText: "Add Donation Amount",
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      width: 1.5,
+                                                      color: Colors.black26))),
+                                          validator:
+                                          FormBuilderValidators.compose([
+                                            FormBuilderValidators.required()
+                                          ]),
+                                        ),
+                                      ),
+                                      SizedBox(height: 20,),
+                                      PFRaisedButton(title: "Add Task",
+                                          onPressed: (){
+                                            _donationAmountKey.currentState?.saveAndValidate();
+                                            storeData(kEmpID, widget.activityData, int.parse(_donationAmountKey.currentState?.fields['Donation_Amount']?.value));
+                                            Get.back();
+                                          }),
+                                      SizedBox(height: 10,)
+                                    ]),),
+                                ),
+                              ),
+                              backgroundColor: Colors.white,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10)
+                                ),
+                              ),
+
+                            );
                           } else {
-                            // Get.to(() => RegisteredPage()); Add Volunteering Page
+                            Get.to(() => RegisterForActivity(tasks: widget.activityData['Task'], activityData: widget.activityData,));
                           }
                         }
                       },

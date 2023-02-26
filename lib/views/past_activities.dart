@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:psl_foundation/views/activity_specific_analytic_page.dart';
 import 'package:psl_foundation/views/registered_participants_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:psl_foundation/views/widgets/appbar.dart';
@@ -53,7 +56,9 @@ class _PastActivitiesState extends State<PastActivities> {
                   return Container(
                     margin: EdgeInsets.symmetric(horizontal: kVerticalSpace, vertical: 5),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(ActivitySpecificAnalyticPage());
+                      },
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
