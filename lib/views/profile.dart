@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         .headline6
                         ?.copyWith(fontWeight: FontWeight.w300, fontSize: 16),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         label: const Text("Webiste"),
                         icon: const Icon(FontAwesomeIcons.globe),
                       ),
-                      const SizedBox(width: 10.0),
+                      const SizedBox(width: 5.0),
                       FloatingActionButton.extended(
                         onPressed: () {},
                         backgroundColor: kColorPrimary,
@@ -96,9 +96,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   const _ProfileInfoRow(),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   // if(condtion) //lives saved is more than 10 award the persistent foundation
                   FloatingActionButton.extended(
                     onPressed: () async {
@@ -115,13 +115,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     label: const Text("Download Star Performer Certificate"),
                     icon: const Icon(FontAwesomeIcons.award),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   FloatingActionButton.extended(
                     onPressed: () {
                       logout();
                       Get.off(() => LoginScreen());
                     },
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.red.withOpacity(0.7),
                     label: const Text("Logout"),
                     icon: const Icon(FontAwesomeIcons.rightFromBracket),
                   ),
@@ -199,7 +199,6 @@ class _TopPortion extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        SvgPicture.asset('assets/images/foundation-logo-updated.svg'),
         Container(
           child: Padding(
             padding: const EdgeInsets.only(top: 40),
@@ -209,7 +208,7 @@ class _TopPortion extends StatelessWidget {
               fit: BoxFit.scaleDown,
             ),
           ),
-          margin: const EdgeInsets.only(bottom: 50),
+          margin: const EdgeInsets.only(bottom: 80),
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.bottomCenter,

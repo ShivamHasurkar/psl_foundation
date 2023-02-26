@@ -173,7 +173,7 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       Container(
                         height: 42,
@@ -186,7 +186,8 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            // onHeartIconTapped();
+                            // Call whatsapp chat link and route to join the group
+                            print(widget.activityData["Whatsapp_Chat_Link"]);
                           },
                           child: Icon(
                             FontAwesomeIcons.whatsapp,
@@ -370,7 +371,8 @@ class _ViewActivityPageState extends State<ViewActivityPage> {
                       borderRadius: BorderRadius.circular(16),
                       onTap: () async {
                         if (appMode == "Admin") {
-                          Get.to(() => RegisteredPage());
+                          Get.to(() => RegisteredPage(
+                              widget.activityData["Activity_Id"]));
                         } else {
                           if (widget.activityData["Activity_Type"] ==
                               "Donation Drive") {
